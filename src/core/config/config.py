@@ -2,7 +2,7 @@ import os
 
 import yaml
 
-with open(os.getcwd()+'/src/core/config/application.yaml', 'r') as yaml_conf:
+with open(os.getcwd() + '/src/core/config/application.yaml', 'r') as yaml_conf:
     conf = yaml.safe_load(yaml_conf)[os.environ.get('ENV', 'local')]
 
 

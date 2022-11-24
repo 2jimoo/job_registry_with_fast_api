@@ -1,6 +1,6 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-
 from odmantic import AIOEngine
+
 from src.core.config.config import Config
 
 DB_URI = Config.mongodb_uri

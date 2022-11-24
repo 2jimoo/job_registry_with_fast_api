@@ -1,6 +1,6 @@
 from typing import Optional
-from src.core.config.database import engine
 
+from src.core.config.database import engine
 from src.core.domain.model.job import Job
 from src.core.webapp.out.mongo.repository.job_model import JobModel
 from src.core.webapp.out.mongo.repository.job_repository import JobRepository
@@ -25,4 +25,4 @@ class JobMongoRepository(JobRepository):
 
     @staticmethod
     def map_to_domain(result: JobModel) -> Job:
-        return Job(result.name, result.created_at, result.created_by, result.modified_at,result.modified_by)
+        return Job(result.name, result.created_at, result.created_by, result.modified_at, result.modified_by)
