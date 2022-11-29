@@ -7,6 +7,8 @@ class JobCommandService(CreateJobUseCase):
         self.persist_job_port = persist_job_port
 
     async def create(self, command: CreateJobCommand) -> Optional[Job]:
-        raise self.persist_job_port.persist(
-            Job(command.name, command.created_at, command.created_by, command.created_at, command.created_by)
+        # TODO 이름 중복 확인
+        return await self.persist_job_port.persist(
+            Job(name=command.name, created_at=command.created_at, created_by=command.created_by,
+                modified_at=command.created_at, modified_by=command.created_by)
         )

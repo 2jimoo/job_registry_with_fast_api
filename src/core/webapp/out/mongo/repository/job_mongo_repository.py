@@ -21,8 +21,10 @@ class JobMongoRepository(JobRepository):
 
     @staticmethod
     def map_to_entity(job: Job) -> JobModel:
-        return JobModel().of(job)
+        return JobModel(name=job.name, created_at=job.created_at, created_by=job.created_by,
+                        modified_at=job.modified_at, modified_by=job.modified_by)
 
     @staticmethod
     def map_to_domain(result: JobModel) -> Job:
-        return Job(result.name, result.created_at, result.created_by, result.modified_at, result.modified_by)
+        return Job(name=result.name, created_at=result.created_at, created_by=result.created_by,
+                   modified_at=result.modified_at, modified_by=result.modified_by)

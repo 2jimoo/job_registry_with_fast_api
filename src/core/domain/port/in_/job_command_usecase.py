@@ -9,7 +9,7 @@ from src.core.domain.model.job import Job
 
 class CreateJobCommand(BaseModel):
     name: str
-    created_at: datetime
+    created_at: datetime.datetime
     created_by: str
 
 

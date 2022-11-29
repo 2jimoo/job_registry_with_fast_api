@@ -30,6 +30,7 @@ class JobViewModel(BaseModel):
 
 
 @job_router.post(
+    path='',
     response_model=JobViewModel,
     status_code=status.HTTP_201_CREATED
 )
@@ -40,18 +41,17 @@ async def create(
     create_job_use_case = JobCommandService(persist_job_port)
     job_created = await create_job_use_case.create(
         CreateJobCommand(
-            job_create_request.name,
-            datetime.utcnow(),
-            job_create_request.requester
-        )
-    )
+            name=job_create_request.name,
+            created_at=datetime.utcnow(),
+            created_by=job_create_request.requester
+        ))
     if job_created:
         return JobViewModel(
-            job_created.name,
-            job_created.created_at,
-            job_created.created_by,
-            job_created.modified_at,
-            job_created.modified_by
+            name=job_created.name,
+            created_at=job_created.created_at,
+            created_by=job_created.created_by,
+            modified_at=job_created.modified_at,
+            modified_by=job_created.modified_by
         )
     else:
         raise UnexpectedRequestFailError("Fail to create job.")
